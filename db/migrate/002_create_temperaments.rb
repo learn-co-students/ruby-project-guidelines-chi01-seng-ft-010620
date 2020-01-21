@@ -1,4 +1,4 @@
-class CreateTemperaments < ActiveRecord::Migration[5.1]
+class CreateTemperaments < ActiveRecord::Migration[5.0]
 
     def change 
         create_table :temperaments do |t|
