@@ -1,14 +1,12 @@
-# Breed.destroy_all
-# Personality.destroy_all
-# Temperament.destroy_all
-
+Breed.destroy_all
+Temperament.destroy_all
+Personality.destroy_all
 
 require_relative '../config/environment'
+require 'pry'
 require 'net/http'
 require 'open-uri'
 require 'json'
-require 'pry'
-# Temperament.destroy_all
 
 url = "https://api.thedogapi.com/v1/breeds"
 
@@ -16,41 +14,31 @@ uri = URI.parse(url)
 
 response = Net::HTTP.get_response(uri)
 
-response_hash = JSON.parse(response.body)
-# binding.pry
-new_dog = response_hash.map do |breed| 
-    Breed.create(name: breed["name"], weight: breed["weight"]["imperial"], lifespan: breed["life_span"])
-end
+<<<<<<< HEAD
+response_array = JSON.parse(response.body)
 
-# Personality.new(new_dog, )
-## TO GET A LIST OF ALL 125 UNIQ TEMPERAMENT LISTINGS
-temperament_arrays = response_hash.map {|breed| breed["temperament"]}
+response_array.map do |breed| 
+    new_dog = Breed.create(name: breed["name"], weight: breed["weight"]["imperial"], lifespan: breed["life_span"])
+end 
 
-temperament_string = temperament_arrays.join(", ")
+temperaments = response_array.map { |a| a["temperament"] }
+temperament_string = temperaments.join(", ")
+temperament_array = temperament_string.split(", ").uniq
+temperament_array.each do |temperament|
+    Temperament.create(name: temperament)
+end 
 
-temperament_list = temperament_string.split(", ")
-
-temperament_list.map do |i|
-    Temperament.create(name: i)
-end
-# binding.pry
-
-## ATTACHING ONE BREED AND ONE TEMPERAMENT TO A PERSONALITY 
-## EACH TIME THERE IS A MATCH
-x = response_hash.map { |breed| breed["temperament"]}
-
-
-# binding.pry
-    # Personality.create(breed_id: Breed.id, temperament_id: Temperament.id)
-# Personality.destroy_all
+Personality.create(breed_id: Breed.all[8].id, temperament_id: Temperament.all[7].id)
+Personality.create(breed_id: Breed.all[3].id, temperament_id: Temperament.all[7].id)
+Personality.create(breed_id: Breed.all[97].id, temperament_id: Temperament.all[6].id)
+Personality.create(breed_id: Breed.all[97].id, temperament_id: Temperament.all[12].id)
+Personality.create(breed_id: Breed.all[65].id, temperament_id: Temperament.all[12].id)
+Personality.create(breed_id: Breed.all[97].id, temperament_id: Temperament.all[9].id)
+Personality.create(breed_id: Breed.all[31].id, temperament_id: Temperament.all[58].id)
+Personality.create(breed_id: Breed.all[24].id, temperament_id: Temperament.all[5].id)
+Personality.create(breed_id: Breed.all[8].id, temperament_id: Temperament.all[100].id)
+Personality.create(breed_id: Breed.all[1].id, temperament_id: Temperament.all[67].id)
+   
+        
 
 
-p1 = Personality.find_or_create_by(breed_id: 35, temperament_id: 1140)
-p2 = Personality.find_or_create_by(breed_id: 5, temperament_id: 1200)
-p3 = Personality.find_or_create_by(breed_id: 58, temperament_id: 1234)
-p4 = Personality.find_or_create_by(breed_id: 17, temperament_id: 1200)
-p5 = Personality.find_or_create_by(breed_id: 35, temperament_id: 1160)
-p6 = Personality.find_or_create_by(breed_id: 50, temperament_id: 1157)
-p7 = Personality.find_or_create_by(breed_id: 50, temperament_id: 1168)
-p8 = Personality.find_or_create_by(breed_id: 10, temperament_id: 1157)
-# binding.pry
