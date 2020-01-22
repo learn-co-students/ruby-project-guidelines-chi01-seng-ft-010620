@@ -14,7 +14,6 @@ uri = URI.parse(url)
 
 response = Net::HTTP.get_response(uri)
 
-<<<<<<< HEAD
 response_array = JSON.parse(response.body)
 
 response_array.map do |breed| 
@@ -42,3 +41,4 @@ Personality.create(breed_id: Breed.all[1].id, temperament_id: Temperament.all[67
         
 
 
+# Christine changed this
