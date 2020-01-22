@@ -30,4 +30,4 @@ require_relative '../config/environment'
 # new = Personality.new_personality("Akita", "Alert")
 # puts Temperament.see_breed_names("Excitable")
 
-puts Temperament.see_breeds_with_certain_weight_and_temperament(40, "Excitable")
+puts Temperament.see_breeds_with_certain_weight_and_temperament(50, "Excitable")
