@@ -3,6 +3,7 @@ require 'net/http'
 require 'open-uri'
 require 'json'
 require 'pry'
+require 'faker'
  
 class GetEventData
  
@@ -44,6 +45,13 @@ parsed_data["_embedded"]["events"].each do |event_data|
   artist: event_data["_embedded"]["attractions"][0]["name"],
   ticket_price: rand(100..200),
   genre: event_data["classifications"][0]["genre"]["name"])
+end 
+
+10.times do |user|
+  User.create(name: Faker::GreekPhilosophers.name,
+  email: Faker::Internet.email,
+  payment_info: rand(1000..9999)
+  )
 end 
 
 binding.pry 
