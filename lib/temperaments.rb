@@ -16,7 +16,7 @@ class Temperament < ActiveRecord::Base
 
     def self.see_breeds_with_certain_weight_and_temperament(weight, temperament)
         breed_list = self.see_breeds(temperament)
-        weighted_breeds = breed_list.where("weight == #{weight}")
+        weighted_breeds = breed_list.select{ |breed| breed.weight.between?(weight-10, weight+10)}
         weighted_breeds.map{|d| d.name}
  
      end
