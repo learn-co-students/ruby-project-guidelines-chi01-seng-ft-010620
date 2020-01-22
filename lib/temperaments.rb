@@ -6,7 +6,19 @@ class Temperament < ActiveRecord::Base
 
     def self.see_breeds(temperament)
         breeds = self.find_by(name: temperament).breeds
+        # breeds.map{|b| b.name}
+    end
+
+    def self.see_breed_names(temperament)
+        breeds = self.find_by(name: temperament).breeds
         breeds.map{|b| b.name}
     end
+
+    def self.see_breeds_with_certain_weight_and_temperament(weight, temperament)
+        breed_list = self.see_breeds(temperament)
+        weighted_breeds = breed_list.where("weight == #{weight}")
+        weighted_breeds.map{|d| d.name}
+ 
+     end
 
 end 

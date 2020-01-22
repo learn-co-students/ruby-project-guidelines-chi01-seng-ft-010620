@@ -27,5 +27,7 @@ require_relative '../config/environment'
 
 # p Temperament.see_breeds("Loyal")
 # Personality.destroy_all
-new = Personality.new_personality("Brittany", "Loyal")
-puts Temperament.see_breeds("Loyal")
+# new = Personality.new_personality("Akita", "Alert")
+# puts Temperament.see_breed_names("Excitable")
+
+puts Temperament.see_breeds_with_certain_weight_and_temperament(30, "Loyal")

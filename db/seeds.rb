@@ -42,15 +42,15 @@ x = response_hash.map { |breed| breed["temperament"]}
 
 # binding.pry
     # Personality.create(breed_id: Breed.id, temperament_id: Temperament.id)
-Personality.destroy_all
+# Personality.destroy_all
 
 
-p1 = Personality.create(breed_id: 35, temperament_id: 1140)
-p2 = Personality.create(breed_id: 5, temperament_id: 1450)
-p3 = Personality.create(breed_id: 58, temperament_id: 1234)
-p4 = Personality.create(breed_id: 17, temperament_id: 1450)
-p5 = Personality.create(breed_id: 35, temperament_id: 2000)
-p6 = Personality.create(breed_id: 50, temperament_id: 1157)
-p7 = Personality.create(breed_id: 50, temperament_id: 1168)
-p8 = Personality.create(breed_id: 10, temperament_id: 1157)
+p1 = Personality.find_or_create_by(breed_id: 35, temperament_id: 1140)
+p2 = Personality.find_or_create_by(breed_id: 5, temperament_id: 1200)
+p3 = Personality.find_or_create_by(breed_id: 58, temperament_id: 1234)
+p4 = Personality.find_or_create_by(breed_id: 17, temperament_id: 1200)
+p5 = Personality.find_or_create_by(breed_id: 35, temperament_id: 1160)
+p6 = Personality.find_or_create_by(breed_id: 50, temperament_id: 1157)
+p7 = Personality.find_or_create_by(breed_id: 50, temperament_id: 1168)
+p8 = Personality.find_or_create_by(breed_id: 10, temperament_id: 1157)
 # binding.pry
