@@ -14,7 +14,6 @@ uri = URI.parse(url)
 
 response = Net::HTTP.get_response(uri)
 
-<<<<<<< HEAD
 response_array = JSON.parse(response.body)
 
 response_array.map do |breed| 
