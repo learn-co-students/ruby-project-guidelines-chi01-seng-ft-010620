@@ -26,6 +26,6 @@ require_relative '../config/environment'
 #     Breed.create(name: )
 
 # p Temperament.see_breeds("Loyal")
-
-new = Personality.new_personality("Irish Wolfhound", "Clownish")
-p Temperament.see_breeds("Clownish")
+# Personality.destroy_all
+new = Personality.new_personality("Brittany", "Loyal")
+puts Temperament.see_breeds("Loyal")
