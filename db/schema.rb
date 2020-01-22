@@ -13,25 +13,31 @@
 ActiveRecord::Schema.define(version: 20200122163532) do
 
   create_table "events", force: :cascade do |t|
+    t.string   "name"
     t.string   "venue"
-    t.string   "location"
+    t.string   "date"
+    t.string   "time"
     t.string   "artist"
-    t.float    "ticket_price"
+    t.integer  "ticket_price"
     t.string   "genre"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "event_id"
-    t.integer "quantity"
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.integer  "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "payment_info"
+    t.string   "name"
+    t.string   "email"
+    t.string   "payment_info"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
 end

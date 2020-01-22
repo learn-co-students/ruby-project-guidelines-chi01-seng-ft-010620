@@ -2,6 +2,7 @@
 require 'net/http'
 require 'open-uri'
 require 'json'
+require 'pry'
  
 class GetEventData
  
@@ -35,4 +36,14 @@ event_one_venue_name = event_one["_embedded"]["venues"][0]["name"]
 
 event_one_artist_name = event_one["_embedded"]["attractions"][0]["name"]
 
-binding.pry
+parsed_data["_embedded"]["events"].each do |event_data|
+  Event.create(name: event_data["name"], 
+  venue: event_data["_embedded"]["venues"][0]["name"], 
+  date: event_data["dates"]["start"]["localDate"],
+  time: event_data["dates"]["start"]["localTime"],
+  artist: event_data["_embedded"]["attractions"][0]["name"],
+  ticket_price: rand(100..200),
+  genre: event_data["classifications"][0]["genre"]["name"])
+end 
+
+binding.pry 
