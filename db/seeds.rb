@@ -9,10 +9,12 @@ require 'open-uri'
 require 'json'
 
 url = "https://api.thedogapi.com/v1/breeds"
+
 uri = URI.parse(url)
 
 response = Net::HTTP.get_response(uri)
 
+<<<<<<< HEAD
 response_array = JSON.parse(response.body)
 
 response_array.map do |breed| 
@@ -38,4 +40,5 @@ Personality.create(breed_id: Breed.all[8].id, temperament_id: Temperament.all[10
 Personality.create(breed_id: Breed.all[1].id, temperament_id: Temperament.all[67].id)
    
         
+
 

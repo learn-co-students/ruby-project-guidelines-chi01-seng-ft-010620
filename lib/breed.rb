@@ -32,4 +32,6 @@ class Breed < ActiveRecord::Base
         breed_temperament_hash
     end 
 
+
+
 end 
