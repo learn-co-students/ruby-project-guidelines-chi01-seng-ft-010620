@@ -2,9 +2,20 @@ class Order < ActiveRecord::Base
     belongs_to :event
     belongs_to :user
 
-    def delete_order
-        order = Order.find_by("user_id:")
-        order.delete
+    def self.delete_order
+        #search order.find_by
+        puts "Please type in the name of the order you would like to delete."
+        $this_user.events.map do |event|
+            puts event.name
+        end
+        order_selection = gets.chomp
+        event_to_delete = Event.find_by(name: order_selection)
+        order_to_delete = Order.find_by(user_id: $this_user.id, event_id: event_to_delete.id)
+        binding.pry
+        order_to_delete.delete
+        
+        puts "You have deleted your order."
+        
     end
 
     def remove_tickets_from_order
@@ -23,14 +34,14 @@ class Order < ActiveRecord::Base
         self.save
       end
 
-    def add_tickets_to_order
-        puts "Enter amount of tickets to be added to your order. You may add up to 10 tickets."
-        user_input = gets.chomp
-        # binding.pry
-        input = user_input.to_i.clamp(1,10)
-            self.quantity += input
-            self.save
-      end
+    # def add_tickets_to_order
+    #     puts "Enter amount of tickets to be added to your order. You may add up to 10 tickets."
+    #     user_input = gets.chomp
+    #     # binding.pry
+    #     input = user_input.to_i.clamp(1,10)
+    #         self.quantity += input
+    #         self.save
+    #   end
 
 
     def self.place_an_order
@@ -58,9 +69,11 @@ class Order < ActiveRecord::Base
         else
         $this_user.payment_info = card_num
         $this_user.save
-        puts "Congratulations, #{$this_user.name}! Your order has been confirmed for #{$this_event.name} on #{$this_event.date}. You have #{$this_order.quantity} tickets for a total cost of #{$total}."
+        puts "Congratulations, #{$this_user.name}! Your order has been confirmed for #{$this_event.name} on #{$this_event.date}. You have #{$this_order.quantity} tickets for a total cost of $#{$total}."
         end
     end
+
+
 
 
 

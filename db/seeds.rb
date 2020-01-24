@@ -21,21 +21,21 @@ data = GetEventData.new.get_data
 
 parsed_data = JSON.parse(data)
 
-event_two = parsed_data["_embedded"]["events"][1]
+# event_two = parsed_data["_embedded"]["events"][1]
 
-event_one = parsed_data["_embedded"]["events"][0]
+# event_one = parsed_data["_embedded"]["events"][0]
 
-event_one_name = event_one["name"]
+# event_one_name = event_one["name"]
 
-event_one_date = event_one["dates"]["start"]["localDate"].to_date
+# event_one_date = event_one["dates"]["start"]["localDate"].to_date
 
-event_one_time = event_one["dates"]["start"]["localTime"]
+# event_one_time = event_one["dates"]["start"]["localTime"]
 
-event_one_genre = event_one["classifications"][0]["genre"]["name"]
+# event_one_genre = event_one["classifications"][0]["genre"]["name"]
 
-event_one_venue_name = event_one["_embedded"]["venues"][0]["name"]
+# event_one_venue_name = event_one["_embedded"]["venues"][0]["name"]
 
-event_one_artist_name = event_one["_embedded"]["attractions"][0]["name"]
+# event_one_artist_name = event_one["_embedded"]["attractions"][0]["name"]
 
 parsed_data["_embedded"]["events"].each do |event_data|
   Event.create(name: event_data["name"], 
