@@ -11,7 +11,7 @@ class Order < ActiveRecord::Base
         order_selection = gets.chomp
         event_to_delete = Event.find_by(name: order_selection)
         order_to_delete = Order.find_by(user_id: $this_user.id, event_id: event_to_delete.id)
-        binding.pry
+        
         order_to_delete.delete
         
         puts "You have deleted your order."
@@ -43,6 +43,38 @@ class Order < ActiveRecord::Base
     #         self.save
     #   end
 
+    # def self.add_tickets_to_order
+    #     puts "Please type in the name of the order you would like to add tickets to."
+    #     $this_user.events.map do |event|
+    #         puts event.name
+    #     end
+    #     order_selection = gets.chomp
+    #     event_to_update = Event.find_by(name: order_selection)
+    #     order_to_update = Order.find_by(user_id: $this_user.id, event_id: event_to_update.id)
+    #     order_to_update
+    #     binding.pry
+    #     puts "Enter amount of tickets to be added to your order. You may add up to 10 tickets."
+    #     user_input = gets.chomp
+        
+    #     input = user_input.to_i.clamp(1,10)
+    #     # if $this_order.quantity < 10
+        
+    #         order_to_update.quantity += input
+    #         if order_to_update.quantity > 10
+    #             puts "You have attempted to add too many tickets to your order. Your order has been updated to ten tickets."
+    #             order_to_update.quantity.clamp(1,10)
+    #             order_to_update.save
+    #             puts "You now have #{order_to_update.quantity} tickets in your cart."
+    #             $total = order_to_update.quantity * event_to_update.ticket_price
+    #             puts "Your updated total is $#{$total}."
+    #         else 
+    #             order_to_update.save
+    #             puts "You now have #{order_to_update.quantity} tickets in your cart."
+    #             total = order_to_update.quantity * event_to_update.ticket_price
+    #             puts "Your updated total is $#{total}."
+    #             end
+    # end
+
 
     def self.place_an_order
         puts "Place your order."
@@ -51,12 +83,17 @@ class Order < ActiveRecord::Base
         user_input = gets.chomp
         input = user_input.to_i.clamp(1,10)
         $this_order.quantity = input
+        $this_order.save
         $this_order
+        puts "-------------------------------------------"
+        puts "-------------------------------------------"
     end
 
     def self.calculate_total
         $total = $this_order.quantity * $this_event.ticket_price
         puts "You have selected #{$this_order.quantity} tickets to #{$this_event.name} for the price of $#{$total}. To place your order, enter four digit credit card number."
+        puts "-------------------------------------------"
+        puts "-------------------------------------------"
     end
 
     def self.complete_purchase
@@ -69,12 +106,9 @@ class Order < ActiveRecord::Base
         else
         $this_user.payment_info = card_num
         $this_user.save
+        puts "-------------------------------------------"
+        puts "-------------------------------------------"
         puts "Congratulations, #{$this_user.name}! Your order has been confirmed for #{$this_event.name} on #{$this_event.date}. You have #{$this_order.quantity} tickets for a total cost of $#{$total}."
         end
     end
-
-
-
-
-
 end

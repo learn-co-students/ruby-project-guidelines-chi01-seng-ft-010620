@@ -11,8 +11,5 @@ class Event < ActiveRecord::Base
         $this_event = Event.find_by(id: input)
         puts "You have chosen #{$this_event.name}"
         $this_event
-
     end 
-
-
 end
