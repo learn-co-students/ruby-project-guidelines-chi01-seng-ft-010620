@@ -10,14 +10,25 @@ class User < ActiveRecord::Base
         input = user_input.to_s.capitalize
         user = User.find_by(name: input)
         puts "Hello, #{user.name}, your email on file with us is #{user.email}."
+        user
     end
 
-    def create_new_user
+    def self.find_user_name(name)
+        self.find_by(name: name)
+    end 
+
+    def self.create_new_user
         puts "Enter name: "
-            user = User.create
-            user.name = gets.chomp
+            $this_user = User.create
+            user_input = gets.chomp 
+            input = user_input.to_s.capitalize 
+            $this_user.name = input 
+            $this_user
+            
             puts "Enter email: "
-            user.email = gets.chomp
+            $this_user.email = gets.chomp
+            $this_user.save
+            $this_user
     end
 
     # def select_an_event

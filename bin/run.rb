@@ -5,18 +5,18 @@ puts "Welcome to Chicago Music Concerts Ticket Interface, do you have an account
 
 def display_my_orders
   self.order
-  binding.pry
 end
 
 # order_six = Order.all[6]
 
-user = User.all[5]
+# user = User.all[5]
 
 
 
-user.add_payment_method
+# user.add_payment_method
 
-binding.pry
+
+
 
 # order_six.remove_tickets_from_order
 
@@ -36,12 +36,28 @@ binding.pry
 #   self.save
 # end
 
-User.find_user_by_name
 
+    puts "Do you have an existing account?"
+    puts "Enter 1 for yes, or 2 for no."
+    input = gets.chomp
+    if  input == "1"   
+        $this_user = User.find_user_by_name
+        
+    else
+        $this_user = User.create_new_user 
+
+    end
+
+    
+
+
+
+
+
+
+# Order.new(user_id: this_user.id, event_id: concert.id)
 
 # binding.pry
-
-
 
 # def new_user
 #     puts "Enter name: "
@@ -54,13 +70,26 @@ User.find_user_by_name
 
   #new_user
 
-# Event.all.each_with_index do |event, index|
-      # Event.order(date: :asc)
-#     puts "#{index + 1}. #{event.name}"
-#     puts "WHEN: #{event.date} at #{event.time}"
-#     puts "GENERAL ADMISSION: $#{event.ticket_price}"
-#     puts "-------------------------------------------"
-# end 
+Event.all.each_with_index do |event, index|
+      Event.order(date: :asc)
+    puts "#{index + 1}. #{event.name}"
+    puts "WHEN: #{event.date} at #{event.time}"
+    puts "GENERAL ADMISSION: $#{event.ticket_price}"
+    puts "-------------------------------------------"
+end
+
+$this_event = Event.find_event_by_number 
+
+
+Order.place_an_order 
+
+Order.calculate_total
+
+Order.complete_purchase
+
+
+
+
 
 # User.name = user_input
 
