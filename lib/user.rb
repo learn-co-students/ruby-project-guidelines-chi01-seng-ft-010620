@@ -31,6 +31,23 @@ class User < ActiveRecord::Base
             $this_user
     end
 
+    # def self.welcome_existing_user
+    #     puts "Welcome #{$this_user.name}! What would you like to do next? Choose from the following options."
+    #     puts "1. View my orders"
+    #     puts "2. View a list of concerts and place an order"
+    #     puts "3. Update an existing order"
+    #     puts "4. Delete an existing order"
+    #     puts "Enter the number for your choice"
+    #     puts "Options are 1, 2, 3, or 4"
+    #     user_choice
+    #     binding.pry
+    # end
+
+    # def self.display_my_orders
+    #    puts @this_user.orders
+    #     binding.pry
+    # end
+
     # def select_an_event
     #     puts "Please select an event!"
 
@@ -47,9 +64,5 @@ class User < ActiveRecord::Base
         self.payment_info = card_num
         self.save
         end
-    end
-
-    def display_my_orders
-        self.orders
     end
 end
